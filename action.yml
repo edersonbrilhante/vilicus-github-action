@@ -1,0 +1,13 @@
+name: 'Vilicus Scan'
+description: 'Scans container images for vulnerabilities using Vilicus'
+author: 'Ederson Brilhante'
+inputs:
+  image:
+    description: 'image reference'
+    required: true
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'docker://docker.io/vilicus/vilicus:latest'
