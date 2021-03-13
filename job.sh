@@ -13,7 +13,7 @@ function set_vars (){
 }
 
 function push_image (){
-  
+  echo "Push Image"
   if [[ $IMAGE =~ "localhost:5000" ]]; then
     docker push $IMAGE
     IMAGE="${IMAGE/localhost:5000/localregistry.vilicus.svc:5000}" 
@@ -21,18 +21,22 @@ function push_image (){
 }
 
 function download_docker_compose (){
+  echo "Download Docker Compose"
   curl -o docker-compose.yml https://raw.githubusercontent.com/edersonbrilhante/vilicus/main/deployments/docker-compose.yml 
 }
 
-function run_docker_compose () {
+function run_docker_compose (){
+  echo "Run Docker Compose"
   docker-compose up -d
 }
 
 function create_artifacts (){
+  echo "Create Artifacts Folder"
   mkdir -p artifacts && chmod 777 artifacts
 }
 
 function run_scan (){
+  echo "Run Scan"
   docker run \
     -v ${PWD}/artifacts:/artifacts \
     --network container:vilicus \

@@ -8,9 +8,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: |
-        chmod +x job.sh
-        ./job.sh
+    - run: ${{ github.action_path }}/job.sh
       env:
         IMAGE: ${{ inputs.image }}
       shell: bash
