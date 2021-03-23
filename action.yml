@@ -8,7 +8,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/job.sh
+    - run: |
+        wget -O ${{ github.action_path }}/job.sh https://raw.githubusercontent.com/edersonbrilhante/vilicus/develop/scripts/run-job.sh
+        chmod +x ${{ github.action_path }}/job.sh
+        ${{ github.action_path }}/job.sh
       env:
         IMAGE: ${{ inputs.image }}
       shell: bash
