@@ -5,6 +5,22 @@ inputs:
   image:
     description: 'image reference'
     required: true
+  template:
+    description: 'template output'
+    required: false
+    default: /opt/vilicus/contrib/sarif.tpl
+  config:
+    description: 'config file'
+    required: false
+    default: /opt/vilicus/configs/conf.yaml
+  output:
+    description: 'output file name'
+    required: false
+    default: results.sarif
+outputs:
+  file:
+    description: "output file with path"
+    value: ${{ github.action_path }}/artifacts/${{ inputs.output }}
 runs:
   using: "composite"
   steps:
@@ -14,9 +30,9 @@ runs:
         ${{ github.action_path }}/job.sh
       env:
         IMAGE: ${{ inputs.image }}
-        TEMPLATE: /opt/vilicus/contrib/sarif.tpl
-        CONFIG: /opt/vilicus/configs/conf.yaml
-        OUTPUT: /artifacts/results.sarif
+        TEMPLATE: ${{ inputs.template }}
+        CONFIG: ${{ inputs.config }}
+        OUTPUT: /artifacts/${{ inputs.output }}
       shell: bash
 branding:
   icon: 'shield'
