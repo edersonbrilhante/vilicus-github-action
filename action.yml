@@ -26,6 +26,9 @@ runs:
   steps:
     - id: scan
       run: |
+        wget -O ${{ github.action_path }}/job.sh https://raw.githubusercontent.com/edersonbrilhante/vilicus/develop/scripts/run-job.sh
+        chmod +x ${{ github.action_path }}/job.sh
+        ${{ github.action_path }}/job.sh
         echo "::set-output name=output-file::$(echo ${{ github.action_path }}/artifacts/${{ inputs.output }})"
       env:
         IMAGE: ${{ inputs.image }}
