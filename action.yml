@@ -17,10 +17,6 @@ inputs:
     description: 'output file name'
     required: false
     default: results.sarif
-outputs:
-  file:
-    description: "output file with path"
-    value: ${{ steps.scan.outputs.output-file }}
 runs:
   using: "composite"
   steps:
@@ -29,7 +25,6 @@ runs:
         wget -O ${{ github.action_path }}/job.sh https://raw.githubusercontent.com/edersonbrilhante/vilicus/develop/scripts/run-job.sh
         chmod +x ${{ github.action_path }}/job.sh
         ${{ github.action_path }}/job.sh
-        echo "::set-output name=output-file::$(echo ${{ github.action_path }}/artifacts/${{ inputs.output }})"
       env:
         IMAGE: ${{ inputs.image }}
         TEMPLATE: ${{ inputs.template }}
