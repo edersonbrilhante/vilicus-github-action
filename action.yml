@@ -33,4 +33,4 @@ runs:
       shell: bash
 branding:
   icon: 'shield'
-  color: 'green'
+  color: 'purple'
